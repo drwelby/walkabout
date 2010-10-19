@@ -1,0 +1,24 @@
+Walkabout is system for adding georeferencing to paper maps. It's like Michal Migurski's Walking Papers[1], but designed for situations where things are less than ideal and the users may find themselves isolated. Because "the network is not always on" [2].
+
+Goals are:
+
+* Make the georeferencing human-readable
+* Lower the CV processing demands (no SIFT)
+* Make it run anywhere, including localhost
+
+So far, it consists of a simple CGI script that poses as a WMS server. Given a WMS request, it returns a map collar with targets and georeferencing. This could be accessed from the net or run on localhost. The collar has a transparent center so it is just layered on top of other data.
+
+Since it is a WMS server, the collar can be added to online maps such as OpenLayers or to desktop GIS software.
+
+The targets are designed to be easily discoverable by CV algorithms. The text depicting the target lat/lons should be extractable and OCRable. The next step will be to write a decoder that can take a scan of a map with the Walkabout collar and return a world file, so the scan can be used in a GIS or served by a WMS server or whatever.
+
+In the event the decoding service is unavailable, since the collar is human readable the end-user can still georeference the images using ArcMap, GDAL, NYU Map Warper, etc.
+
+TO DO:
+
+* Clean up the map collar server. It's a mess
+* Match the output precision to the input coordinates
+* Get the decoder rolling
+
+[1] http://www.walking-papers.org
+[2] http://www.delicious.com/straup/thenetworkisnotalwayson
