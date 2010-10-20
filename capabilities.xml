@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding="ISO-8859-1" standalone="no" ?>
+<!DOCTYPE WMT_MS_Capabilities SYSTEM "http://schemas.opengis.net/wms/1.1.1/WMS_MS_Capabilities.dtd"
+ [
+ <!ELEMENT VendorSpecificCapabilities EMPTY>
+ ]>  <!-- end of DOCTYPE declaration -->
+
+<WMT_MS_Capabilities version="1.1.1">
+
+
+<Service>
+  <Name>OGC:WMS</Name>
+  <Title>Walkabout WMS Server</Title>
+  <Abstract>Paper map georeferencing for lonely situations</Abstract>
+  <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://demo.mapserver.org/cgi-bin/wms?"/>
+  <ContactInformation>
+    <ContactPersonPrimary>
+      <ContactPerson>Marc Pfister</ContactPerson>
+    </ContactPersonPrimary>
+  <ContactElectronicMailAddress>marc.pfister@gmail.com</ContactElectronicMailAddress>
+  </ContactInformation>
+</Service>
+
+<Capability>
+  <Request>
+    <GetMap>
+      <Format>image/png</Format>
+      <Format>image/png; mode=24bit</Format>
+      <DCPType>
+        <HTTP>
+        </HTTP>
+      </DCPType>
+    </GetMap>
+  </Request>
+  <Layer>
+    <Name>Default</Name>
+    <Title>Default</Title>
+    <Abstract></Abstract>
+    <SRS></SRS>
+    <LatLonBoundingBox minx="-180" miny="-90" maxx="180" maxy="90" />
+    <BoundingBox SRS="EPSG:4326"
+                minx="-180" miny="-90" maxx="180" maxy="90" />
+</WMT_MS_Capabilities>
