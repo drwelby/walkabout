@@ -27,8 +27,8 @@
       <Format>image/png; mode=24bit</Format>
       <DCPType>
           <HTTP>
-              <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://localhost:8000/walkabout.py?"/></Get>
-              <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://localhost:8000/walkabout.py?"/></Post>
+              <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="%(uri)s"/></Get>
+              <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="%(uri)s"/></Post>
        
         </HTTP>
       </DCPType>

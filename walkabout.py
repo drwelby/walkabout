@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import os
 import cgi
 import sys
 import Image
@@ -146,10 +147,23 @@ def returnError(msg):
     sys.exit()
 
 def returnCapabilities():
+    server = os.environ['SERVER_NAME']
+    port = os.environ['SERVER_PORT']
+    if port == '80':
+        port = ''
+    else:
+        port = ':' + port
+    templatevars = {'uri':"http://" + server + port + "/walkabout.py?"}
+    
     f = open('capabilities.xml', 'r')
     print "Content-Type: text/xml\n"
     f.seek(0)
-    print f.read()
+    print f.read() % templatevars
+    sys.exit()
+
+def returnServer():
+    print "Content-Type: text/html\n"
+    print "http://" + os.environ['SERVER_NAME'] +":"+ os.environ['SERVER_PORT']
     sys.exit()
 
 if __name__ == "__main__":
@@ -158,6 +172,8 @@ if __name__ == "__main__":
     if "request" in form:
         if form['request'].value.lower() == 'getcapabilities':
                 returnCapabilities()
+        if form['request'].value.lower() == 'getserver':
+            returnServer()
     if "width" in form and "height" in form and "bbox" in form:
         srs = "srs" in form and form["srs"].value  
         drawFrame(form["bbox"].value,int(form["height"].value),int(form["width"].value))
