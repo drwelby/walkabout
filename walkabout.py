@@ -145,10 +145,19 @@ def returnError(msg):
     print msg
     sys.exit()
 
+def returnCapabilities():
+    f = open('capabilities.xml', 'r')
+    print "Content-Type: text/xml\n"
+    f.seek(0)
+    print f.read()
+    sys.exit()
 
 if __name__ == "__main__":
     form = cgi.FieldStorage()
     form = dict((key.lower(), form[key]) for key in form.keys())
+    if "request" in form:
+        if form['request'].value.lower() == 'getcapabilities':
+                returnCapabilities()
     if "width" in form and "height" in form and "bbox" in form:
         srs = "srs" in form and form["srs"].value  
         drawFrame(form["bbox"].value,int(form["height"].value),int(form["width"].value))
