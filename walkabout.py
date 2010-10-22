@@ -38,7 +38,7 @@ WHITE = (255,255,255,255)
 #WHITE = (255,255,25,255)
 
 # set up font, need one local in the package
-font = ImageFont.truetype('/Library/Fonts/Andale Mono.ttf', BAR_H - (2*TEXT_BUFF))
+font = ImageFont.truetype('/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf', BAR_H - (2*TEXT_BUFF))
 
 def drawTarget(x,y,bar_h,draw):
 
