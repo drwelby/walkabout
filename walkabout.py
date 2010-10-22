@@ -174,10 +174,6 @@ def returnCapabilities():
     print f.read() % templatevars
     sys.exit()
 
-def returnServer():
-    print "Content-Type: text/html\n"
-    print "http://" + os.environ['SERVER_NAME'] +":"+ os.environ['SERVER_PORT']
-    sys.exit()
 
 if __name__ == "__main__":
     form = cgi.FieldStorage()
