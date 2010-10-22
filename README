@@ -18,7 +18,6 @@ TO DO:
 
 * Clean up the map collar server. It's a mess
 * Match the output precision to the input coordinates
-* Hack the GetCapabilites response so its OnlineResource urls are dynamically updated
 * Get the decoder rolling
 
 [1] http://www.walking-papers.org
