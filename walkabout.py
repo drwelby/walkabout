@@ -158,11 +158,12 @@ def returnCapabilities():
     templatevars = {'srs':'', 'uri':''}
     server = os.environ['SERVER_NAME']
     port = os.environ['SERVER_PORT']
+    request = os.environ['SCRIPT_NAME']
     if port == '80':
         port = ''
     else:
         port = ':' + port
-    templatevars['uri'] = "http://" + server + port + "/walkabout.py?"
+    templatevars['uri'] = "http://%s%s%s" % (server,port,request) 
 
     for srs in SUPPORTED_SRS:
         templatevars['srs'] += '<SRS>%s</SRS>' % (srs)
