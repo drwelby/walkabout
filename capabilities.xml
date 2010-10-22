@@ -38,10 +38,8 @@
     <Name>Default</Name>
     <Title>Default</Title>
     <Abstract></Abstract>
-    <SRS>EPSG:4326</SRS>
+    %(srs)s
     <LatLonBoundingBox minx="-180" miny="-90" maxx="180" maxy="90" />
-    <BoundingBox SRS="EPSG:4326"
-                minx="-180" miny="-90" maxx="180" maxy="90" />
         </Layer>
     </Capability>
 </WMT_MS_Capabilities>

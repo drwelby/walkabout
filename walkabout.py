@@ -8,6 +8,14 @@ import ImageFont
 import ImageOps
 import cStringIO
 
+# SRS systems that are supported.
+# Add if needed
+# Or pass SRS= as paramter to GetCapilities request
+
+SUPPORTED_SRS = [
+        'EPSG:4326',
+        'EPSG:900913'
+        ]
 # image size restrictions
 MAX_WIDTH = 2000
 MIN_WIDTH = 640
@@ -147,13 +155,17 @@ def returnError(msg):
     sys.exit()
 
 def returnCapabilities():
+    templatevars = {'srs':'', 'uri':''}
     server = os.environ['SERVER_NAME']
     port = os.environ['SERVER_PORT']
     if port == '80':
         port = ''
     else:
         port = ':' + port
-    templatevars = {'uri':"http://" + server + port + "/walkabout.py?"}
+    templatevars['uri'] = "http://" + server + port + "/walkabout.py?"
+
+    for srs in SUPPORTED_SRS:
+        templatevars['srs'] += '<SRS>%s</SRS>' % (srs)
     
     f = open('capabilities.xml', 'r')
     print "Content-Type: text/xml\n"
@@ -171,9 +183,9 @@ if __name__ == "__main__":
     form = dict((key.lower(), form[key]) for key in form.keys())
     if "request" in form:
         if form['request'].value.lower() == 'getcapabilities':
-                returnCapabilities()
-        if form['request'].value.lower() == 'getserver':
-            returnServer()
+            if 'srs' in form:
+                SUPPORTED_SRS.append(form['srs'].value)
+            returnCapabilities()
     if "width" in form and "height" in form and "bbox" in form:
         srs = "srs" in form and form["srs"].value  
         drawFrame(form["bbox"].value,int(form["height"].value),int(form["width"].value))
